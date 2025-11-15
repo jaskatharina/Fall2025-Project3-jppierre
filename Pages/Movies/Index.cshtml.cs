@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,22 +9,22 @@ using Fall2025_Project3_jppierre.Data;
 using Fall2025_Project3_jppierre.Models;
 
 
-namespace Fall2025_Project3_jppierre.Pages
+namespace Fall2025_Project3_jppierre.Pages.Movies
 {
     public class IndexModel : PageModel
     {
-        private readonly Fall2025_Project3_jppierre.Data.ApplicationDbContext _context;
+      private readonly Fall2025_Project3_jppierre.Data.ApplicationDbContext _context;
 
         public IndexModel(Fall2025_Project3_jppierre.Data.ApplicationDbContext context)
         {
-      _context = context;
+       _context = context;
         }
 
         public IList<Movie> Movies { get;set; } = default!;
 
         public async Task OnGetAsync()
- {
-          Movies = await _context.Movie.ToListAsync();
-      }
+    {
+    Movies = await _context.Movie.ToListAsync();
+    }
     }
 }

@@ -1,0 +1,38 @@
+﻿@page
+@model Fall2025_Project3_jppierre.Pages.ActorMovies.IndexModel
+
+@{
+    ViewData["Title"] = "Actor-Movie Relationships";
+}
+
+<h1>Actor-Movie Relationships</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create new relationship</a>
+</p>
+<table class="table table-striped">
+    <thead>
+   <tr>
+     <th>Actor Name</th>
+    <th>Movie Title</th>
+    <th>Actions</th>
+   </tr>
+ </thead>
+    <tbody>
+@foreach (var item in Model.ActorMovies) {
+        <tr>
+      <td>
+     @Html.DisplayFor(modelItem => item.Actor.Name)
+     </td>
+  <td>
+     @Html.DisplayFor(modelItem => item.Movie.Title)
+   </td>
+       <td>
+    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+     <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+      <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+      </td>
+      </tr>
+}
+ </tbody>
+</table>

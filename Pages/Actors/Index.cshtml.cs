@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -8,8 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Fall2025_Project3_jppierre.Data;
 using Fall2025_Project3_jppierre.Models;
 
-
-namespace Fall2025_Project3_jppierre.Pages
+namespace Fall2025_Project3_jppierre.Pages.Actors
 {
     public class IndexModel : PageModel
     {
@@ -17,14 +15,14 @@ namespace Fall2025_Project3_jppierre.Pages
 
         public IndexModel(Fall2025_Project3_jppierre.Data.ApplicationDbContext context)
         {
-      _context = context;
+            _context = context;
         }
 
-        public IList<Movie> Movies { get;set; } = default!;
+        public IList<Actor> Actors { get;set; } = default!;
 
         public async Task OnGetAsync()
- {
-          Movies = await _context.Movie.ToListAsync();
-      }
+        {
+            Actors = await _context.Actor.ToListAsync();
+        }
     }
 }

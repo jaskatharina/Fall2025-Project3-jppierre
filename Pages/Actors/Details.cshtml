@@ -1,0 +1,169 @@
+﻿@page
+@model Fall2025_Project3_jppierre.Pages.Actors.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Actor Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Actor.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Actor.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Actor.Gender)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Actor.Gender)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Actor.Age)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Actor.Age)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Actor.IMDBLink)
+        </dt>
+        <dd class="col-sm-10">
+            @if (!string.IsNullOrEmpty(Model.Actor.IMDBLink))
+            {
+                <a href="@Model.Actor.IMDBLink" target="_blank">@Model.Actor.IMDBLink</a>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.Actor.IMDBLink)
+            }
+        </dd>
+        <dt class="col-sm-2">
+            Photo
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Actor.Photo != null && Model.Actor.Photo.Length > 0)
+            {
+                <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Actor.Photo)" 
+                     alt="Actor Photo" 
+                     style="max-width: 300px; max-height: 300px;" 
+                     class="img-thumbnail" />
+            }
+            else
+            {
+                <p>No photo available</p>
+            }
+        </dd>
+    </dl>
+</div>
+
+<!-- Movies with Actor Section -->
+<div class="mt-4">
+    <h4>Movies with this Actor</h4>
+    <hr />
+    @if (Model.MoviesWithActor.Any())
+    {
+        <ul class="list-group">
+            @foreach (var movie in Model.MoviesWithActor)
+            {
+                <li class="list-group-item">
+                    <strong>@movie.Title</strong>
+                    @if (!string.IsNullOrEmpty(movie.Genre))
+                    {
+                        <span class="badge badge-info ml-2">@movie.Genre</span>
+                    }
+                    @if (movie.ReleaseYear.HasValue)
+                    {
+                        <span class="text-muted ml-2">(@movie.ReleaseYear)</span>
+                    }
+                    @if (movie.Poster != null && movie.Poster.Length > 0)
+                    {
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(movie.Poster)" 
+                             alt="@movie.Title" 
+                             style="max-width: 40px; max-height: 60px; margin-left: 10px;" 
+                             class="rounded" />
+                    }
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p class="text-muted">This actor is not linked to any movies yet.</p>
+    }
+</div>
+
+<!-- AI Tweets and Sentiment Analysis Section -->
+<div class="mt-5">
+    <h4>AI-Generated Tweets & Sentiment Analysis</h4>
+    <hr />
+    
+    @{
+        var sentimentLabel = Model.AverageSentiment switch
+        {
+            > 0.3 => "Very Positive",
+            > 0.0 => "Positive",
+            > -0.3 => "Neutral",
+            > -0.7 => "Negative",
+           _ => "Very Negative"
+        };
+     var sentimentColor = Model.AverageSentiment switch
+        {
+ > 0.0 => "success",
+            > -0.3 => "warning",
+     _ => "danger"
+     };
+    }
+    
+    <div class="alert alert-@sentimentColor" role="alert">
+        <h5 class="alert-heading">Overall Sentiment: @sentimentLabel</h5>
+        <p>Average Sentiment Score: <strong>@Model.AverageSentiment.ToString("F2")</strong></p>
+        <small>Based on @Model.Tweets.Count AI-generated tweets</small>
+    </div>
+
+    @if (Model.Tweets.Any())
+    {
+        <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+    <tr>
+ <th style="width: 70%;">AI-Generated Tweet</th>
+           <th style="width: 30%;">Sentiment Analysis</th>
+          </tr>
+            </thead>
+            <tbody>
+     @for (int i = 0; i < Model.Tweets.Count; i++)
+           {
+        var sentimentClass = Model.Sentiments[i] switch
+    {
+           "Positive" => "table-success",
+   "Negative" => "table-danger",
+            _ => "table-warning"
+  };
+      <tr class="@sentimentClass">
+     <td>
+             <i class="bi bi-twitter"></i>
+      @Model.Tweets[i]
+          </td>
+       <td>
+            <span class="badge badge-pill badge-@(Model.Sentiments[i] == "Positive" ? "success" : Model.Sentiments[i] == "Negative" ? "danger" : "secondary")">
+       @Model.Sentiments[i]
+        </span>
+       </td>
+     </tr>
+       }
+  </tbody>
+        </table>
+}
+    else
+    {
+        <p class="text-muted">No tweets generated.</p>
+    }
+</div>
+
+<div class="mt-3">
+    <a asp-page="./Edit" asp-route-id="@Model.Actor.Id" class="btn btn-warning">Edit</a>
+    <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+</div>

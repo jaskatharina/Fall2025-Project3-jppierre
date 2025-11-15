@@ -1,0 +1,30 @@
+﻿@page
+@model Fall2025_Project3_jppierre.Pages.ActorMovies.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Actor-Movie Relationship Details</h1>
+
+<div>
+ <hr />
+    <dl class="row">
+  <dt class="col-sm-2">
+      Actor Name
+   </dt>
+  <dd class="col-sm-10">
+ @Html.DisplayFor(model => model.ActorMovie.Actor.Name)
+   </dd>
+  <dt class="col-sm-2">
+Movie Title
+  </dt>
+   <dd class="col-sm-10">
+   @Html.DisplayFor(model => model.ActorMovie.Movie.Title)
+ </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.ActorMovie.Id" class="btn btn-warning">Edit</a>
+    <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+</div>

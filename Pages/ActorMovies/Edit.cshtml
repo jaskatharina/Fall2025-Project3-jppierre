@@ -1,0 +1,41 @@
+﻿@page
+@model Fall2025_Project3_jppierre.Pages.ActorMovies.EditModel
+
+@{
+    ViewData["Title"] = "Edit Actor-Movie Relationship ";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ActorMovie.Id" />
+      <div class="form-group">
+           
+        <label asp-for="ActorMovie.ActorId" class="control-label">Actor</label>
+     <select asp-for="ActorMovie.ActorId" class="form-control" asp-items="ViewBag.ActorId"></select>
+       <span asp-validation-for="ActorMovie.ActorId" class="text-danger"></span>
+    </div>
+       <div class="form-group">
+                
+   <label asp-for="ActorMovie.MovieId" class="control-label">Movie</label>
+   <select asp-for="ActorMovie.MovieId" class="form-control" asp-items="ViewBag.MovieId"></select>
+    <span asp-validation-for="ActorMovie.MovieId" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+     <input type="submit" value="Save Changes" class="btn btn-primary" />
+  </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

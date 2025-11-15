@@ -1,0 +1,51 @@
+﻿@page
+@model Fall2025_Project3_jppierre.Pages.Actors.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Actor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+   <div class="form-group">
+    <label asp-for="Actor.Name" class="control-label"></label>
+  <input asp-for="Actor.Name" class="form-control" />
+      <span asp-validation-for="Actor.Name" class="text-danger"></span>
+       </div>
+  <div class="form-group">
+   <label asp-for="Actor.Gender" class="control-label"></label>
+      <input asp-for="Actor.Gender" class="form-control" />
+    <span asp-validation-for="Actor.Gender" class="text-danger"></span>
+ </div>
+       <div class="form-group">
+    <label asp-for="Actor.Age" class="control-label"></label>
+    <input asp-for="Actor.Age" class="form-control" />
+      <span asp-validation-for="Actor.Age" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+  <label asp-for="Actor.IMDBLink" class="control-label"></label>
+       <input asp-for="Actor.IMDBLink" class="form-control" />
+           <span asp-validation-for="Actor.IMDBLink" class="text-danger"></span>
+  </div>
+     <div class="form-group">
+       <label for="PhotoFile" class="control-label">Photo</label>
+   <input type="file" name="PhotoFile" id="PhotoFile" class="form-control" accept="image/*" />
+  <small class="form-text text-muted">Upload a photo image (JPG, PNG, GIF)</small>
+     </div>
+  <div class="form-group">
+      <input type="submit" value="Create" class="btn btn-primary" />
+        <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+ </div>
+   </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

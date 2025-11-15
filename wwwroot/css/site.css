@@ -1,5 +1,23 @@
+/* Root variables for dark theme with purple accents */
+:root {
+  --dark-bg: #1a1a1a;
+  --dark-bg-secondary: #2d2d2d;
+  --dark-bg-tertiary: #3a3a3a;
+  --purple-accent: #9370db;
+  --purple-accent-hover: #7b5bc4;
+  --purple-accent-light: #b294e6;
+  --yellow: #ffd700;
+  --yellow-hover: #ffed4e;
+  --text-light: #e0e0e0;
+  --text-muted: #a0a0a0;
+  --sentiment-positive: #5a8a3a;
+  --sentiment-neutral: #b8a040;
+  --sentiment-negative: #a84444;
+}
+
 html {
   font-size: 14px;
+  font-family: 'Franklin Gothic Medium';
 }
 
 @media (min-width: 768px) {
@@ -8,8 +26,397 @@ html {
   }
 }
 
+
+/* Dark background for body */
+body {
+  background-color: var(--dark-bg) !important;
+  color: var(--text-light) !important;
+  margin-bottom: 60px;
+  padding: 20px;
+}
+
+/* Purple accents for buttons */
+.btn-primary {
+  background-color: var(--purple-accent) !important;
+  border-color: var(--purple-accent) !important;
+  color: #1a1a1a !important;
+  margin: 5px;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--purple-accent-hover) !important;
+  border-color: var(--purple-accent-hover) !important;
+  color: #1a1a1a !important;
+}
+
+/* Edit button - green */
+.btn-warning {
+  background-color: #5cb85c !important;
+  border-color: #5cb85c !important;
+  color: #1a1a1a !important;
+}
+
+.btn-warning:hover {
+  background-color: #449d44 !important;
+  border-color: #449d44 !important;
+  color: #1a1a1a !important;
+}
+
+/* Details button - yellow */
+.btn-secondary {
+  background-color: var(--yellow) !important;
+  border-color: var(--yellow) !important;
+  color: #1a1a1a !important;
+}
+
+.btn-secondary:hover {
+  background-color: var(--yellow-hover) !important;
+  border-color: var(--yellow-hover) !important;
+  color: #1a1a1a !important;
+}
+
+/* Danger button (for Delete) - dark red */
+.btn-danger {
+  background-color: #d9534f !important;
+  border-color: #d9534f !important;
+  color: #1a1a1a !important;
+}
+
+.btn-danger:hover {
+  background-color: #c9302c !important;
+  border-color: #c9302c !important;
+  color: #1a1a1a !important;
+}
+
+/* Success button - green */
+.btn-success {
+  background-color: #5cb85c !important;
+  border-color: #5cb85c !important;
+  color: #1a1a1a !important;
+}
+
+.btn-success:hover {
+  background-color: #449d44 !important;
+  border-color: #449d44 !important;
+  color: #1a1a1a !important;
+}
+
+/* Info button - purple */
+.btn-info {
+  background-color: var(--purple-accent-light) !important;
+  border-color: var(--purple-accent-light) !important;
+  color: #1a1a1a !important;
+}
+
+.btn-info:hover {
+  background-color: var(--purple-accent) !important;
+  border-color: var(--purple-accent) !important;
+  color: #1a1a1a !important;
+}
+
+/* Purple accent for navbar brand */
+.text-purple {
+  color: var(--purple-accent) !important;
+  font-weight: bold;
+}
+
+.text-purple:hover {
+  color: var(--purple-accent-light) !important;
+}
+
+/* Dark cards and containers */
+.card {
+  background-color: var(--dark-bg-secondary) !important;
+  border-color: var(--dark-bg-tertiary) !important;
+  color: var(--text-light) !important;
+}
+
+.card-header {
+  background-color: var(--dark-bg-tertiary) !important;
+  border-bottom-color: var(--purple-accent) !important;
+}
+
+/* Tables */
+.table {
+  color: var(--text-light) !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: darkslateblue;
+}
+
+/* Completely disable all striped backgrounds with maximum specificity */
+.table-striped tbody tr,
+.table-striped tbody tr > *,
+.table-striped > tbody > tr,
+.table-striped > tbody > tr > *,
+.table-striped > tbody > tr:nth-of-type(odd),
+.table-striped > tbody > tr:nth-of-type(odd) > *,
+.table-striped > tbody > tr:nth-of-type(even),
+.table-striped > tbody > tr:nth-of-type(even) > * {
+  background-color: transparent !important;
+--bs-table-striped-bg: transparent !important;
+  --bs-table-accent-bg: transparent !important;
+}
+
+/* Sentiment table row colors - MAXIMUM SPECIFICITY */
+.table-striped tbody tr.table-success,
+.table-striped tbody tr.table-success > *,
+.table-striped tbody tr.table-success > td,
+.table-striped tbody tr.table-success > th,
+.table tbody tr.table-success,
+.table tbody tr.table-success > *,
+tr.table-success,
+tr.table-success > *,
+tr.table-success > td,
+tr.table-success > th,
+.table-success,
+.table-success > td,
+.table-success > th {
+  background-color: var(--sentiment-positive) !important;
+  color: #1a1a1a !important;
+  --bs-table-bg: var(--sentiment-positive) !important;
+  --bs-table-striped-bg: var(--sentiment-positive) !important;
+  --bs-table-accent-bg: var(--sentiment-positive) !important;
+}
+
+.table-striped tbody tr.table-danger,
+.table-striped tbody tr.table-danger > *,
+.table-striped tbody tr.table-danger > td,
+.table-striped tbody tr.table-danger > th,
+.table tbody tr.table-danger,
+.table tbody tr.table-danger > *,
+tr.table-danger,
+tr.table-danger > *,
+tr.table-danger > td,
+tr.table-danger > th,
+.table-danger,
+.table-danger > td,
+.table-danger > th {
+  background-color: var(--sentiment-negative) !important;
+  color: #1a1a1a !important;
+  --bs-table-bg: var(--sentiment-negative) !important;
+--bs-table-striped-bg: var(--sentiment-negative) !important;
+  --bs-table-accent-bg: var(--sentiment-negative) !important;
+}
+
+.table-striped tbody tr.table-warning,
+.table-striped tbody tr.table-warning > *,
+.table-striped tbody tr.table-warning > td,
+.table-striped tbody tr.table-warning > th,
+.table tbody tr.table-warning,
+.table tbody tr.table-warning > *,
+tr.table-warning,
+tr.table-warning > *,
+tr.table-warning > td,
+tr.table-warning > th,
+.table-warning,
+.table-warning > td,
+.table-warning > th {
+  background-color: var(--sentiment-neutral) !important;
+  color: #1a1a1a !important;
+  --bs-table-bg: var(--sentiment-neutral) !important;
+  --bs-table-striped-bg: var(--sentiment-neutral) !important;
+  --bs-table-accent-bg: var(--sentiment-neutral) !important;
+}
+
+.table-bordered {
+  border-color: #000000 !important;
+}
+
+.table-bordered > :not(caption) > * > * {
+  border-color: #000000 !important;
+}
+
+/* Also update general table borders */
+.table > :not(caption) > * > * {
+  border-color: #000000 !important;
+}
+
+.table tbody,
+.table thead,
+.table tfoot,
+.table tr,
+.table th,
+.table td {
+  border-color: #000000 !important;
+}
+
+/* Table headers - purple background */
+.thead-dark th, 
+.table thead th,
+thead th {
+  background-color: var(--purple-accent) !important;
+  border-color: var(--purple-accent) !important;
+  color: #1a1a1a !important;
+}
+
+/* Forms */
+.form-control, .form-select {
+  background-color: var(--dark-bg-secondary) !important;
+  border-color: var(--dark-bg-tertiary) !important;
+  color: var(--text-light) !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: var(--dark-bg-tertiary) !important;
+  border-color: var(--purple-accent) !important;
+  color: var(--text-light) !important;
+  box-shadow: 0 0 0 0.2rem rgba(147, 112, 219, 0.25) !important;
+}
+
+.form-label {
+  color: var(--text-light) !important;
+}
+
+/* Links */
+a {
+  color: var(--purple-accent) !important;
+}
+
+a:hover {
+  color: var(--purple-accent-hover) !important;
+}
+
+
+/* Alerts with sentiment colors */
+.alert-success {
+  background-color: var(--sentiment-positive) !important;
+  border-color: #4a7c2e !important;
+  color: var(--text-light) !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.alert-danger {
+    background-color: var(--sentiment-negative) !important;
+    border-color: #8b2f2f !important;
+    color: var(--text-light) !important;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.alert-warning {
+    background-color: var(--sentiment-neutral) !important;
+    border-color: var(--yellow) !important;
+    color: var(--text-light) !important;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+/* List groups */
+.list-group-item {
+  background-color: var(--dark-bg-secondary) !important;
+  border-color: var(--dark-bg-tertiary) !important;
+  color: var(--text-light) !important;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.list-group-item:hover {
+  background-color: var(--dark-bg-tertiary) !important;
+}
+
+/* Badges */
+.badge {
+  background-color: var(--purple-accent) !important;
+}
+
+.badge-info {
+  background-color: var(--purple-accent-light) !important;
+  color: #1a1a1a !important;
+}
+
+/* Sentiment badges */
+.badge-success {
+  background-color: #4a7c2e !important;
+  color: var(--text-light) !important;
+}
+
+.badge-danger {
+  background-color: #8b2f2f !important;
+  color: var(--text-light) !important;
+}
+
+.badge-secondary {
+  background-color: var(--yellow) !important;
+  color: #1a1a1a !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-light) !important;
+  text-align: center !important;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+p {
+    text-align: center !important;
+    margin-bottom: 15px;
+}
+
+/* Definition lists */
+dt {
+  color: var(--purple-accent) !important;
+  padding: 8px;
+}
+
+dd {
+  color: var(--text-light) !important;
+  padding: 8px;
+}
+
+/* Horizontal rules */
+hr {
+  border-color: var(--purple-accent) !important;
+  opacity: 0.5;
+}
+
+/* Input groups */
+.input-group-text {
+  background-color: var(--dark-bg-tertiary) !important;
+  border-color: var(--dark-bg-tertiary) !important;
+  color: var(--text-light) !important;
+}
+
+/* Pagination */
+.pagination .page-link {
+  background-color: var(--dark-bg-secondary) !important;
+  border-color: var(--dark-bg-tertiary) !important;
+  color: var(--purple-accent) !important;
+}
+
+.pagination .page-link:hover {
+  background-color: var(--dark-bg-tertiary) !important;
+  color: var(--purple-accent-hover) !important;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--purple-accent) !important;
+  border-color: var(--purple-accent) !important;
+}
+
+/* Modal */
+.modal-content {
+  background-color: var(--dark-bg-secondary) !important;
+  color: var(--text-light) !important;
+}
+
+.modal-header {
+  border-bottom-color: var(--dark-bg-tertiary) !important;
+}
+
+.modal-footer {
+  border-top-color: var(--dark-bg-tertiary) !important;
+}
+
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+  box-shadow: 0 0 0 0.1rem var(--dark-bg), 0 0 0 0.25rem var(--purple-accent);
 }
 
 html {
@@ -17,12 +424,8 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
-}
-
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
+  color: var(--text-muted);
   text-align: end;
 }
 
